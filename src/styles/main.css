@@ -6,6 +6,12 @@
   color: var(--primary-font);
 }
 
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
 .skip-to {
   background-color: #3f4e4f;
   z-index: 1;
@@ -253,7 +259,7 @@ main {
   font-weight: 500;
 }
 
-a.show-more {
+.show-more {
   padding: 15px;
   background-color: var(--secondary-dark);
   border-radius: 5px;
