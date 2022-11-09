@@ -1,39 +1,4 @@
-import {async} from 'regenerator-runtime';
 import FavoriteRestaurantIdb from '../data/favorite-restaurants-idb';
-
-const FavoriteButtonInitiator1 = async (id, restaurant) => {
-  const favBtn = document.querySelector('.detail-page #favorite-button');
-
-  const removeFavorite = () => {
-    favBtn.addEventListener('click', async () => {
-      await FavoriteRestaurantIdb.deleteRestaurant(id);
-      favBtn.classList.remove('favorited');
-      favBtn.classList.add('favorite');
-      favBtn.innerHTML = 'Favorite';
-      renderBtn();
-    });
-  };
-
-  const addFavorited = () => {
-    favBtn.addEventListener('click', async () => {
-      await FavoriteRestaurantIdb.putRestaurant(restaurant);
-      favBtn.classList.remove('favorite');
-      favBtn.classList.add('favorited');
-      favBtn.innerHTML = 'Favorited';
-      renderBtn();
-    });
-  };
-
-  const renderBtn = async () => {
-    const getRestaurant = await FavoriteRestaurantIdb.getRestaurant(id);
-    if (getRestaurant) {
-      removeFavorite();
-    } else {
-      addFavorited();
-    }
-  };
-  await renderBtn();
-};
 
 const FavoriteButtonInitiator = {
   async init(id, restaurant) {

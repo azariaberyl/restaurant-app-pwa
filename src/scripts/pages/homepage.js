@@ -53,12 +53,12 @@ const Homepage = {
 
     data.restaurants.map((restaurant) => {
       this._createRestaurant(
-        restaurant.name,
-        restaurant.description,
-        restaurant.id,
-        restaurant.city,
-        restaurant.pictureId,
-        restaurant.rating
+          restaurant.name,
+          restaurant.description,
+          restaurant.id,
+          restaurant.city,
+          restaurant.pictureId,
+          restaurant.rating,
       );
     });
   },

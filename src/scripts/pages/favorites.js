@@ -29,10 +29,10 @@ const Favorites = {
 
     data.forEach((restaurant) => {
       favoritePage.innerHTML += this._createRestaurant(
-        restaurant.name,
-        restaurant.pictureId,
-        restaurant.rating,
-        restaurant.id
+          restaurant.name,
+          restaurant.pictureId,
+          restaurant.rating,
+          restaurant.id,
       );
     });
   },
