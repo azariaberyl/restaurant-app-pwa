@@ -49,7 +49,10 @@ const Homepage = {
   async render() {
     const data = await RestaurantAPI.getList();
 
-    if (data.error === true) return;
+    if (data.error === true) {
+      alert('Data gagal ditampilkan, silahkan muat ulang');
+      return;
+    }
 
     data.restaurants.map((restaurant) => {
       this._createRestaurant(

@@ -10,7 +10,7 @@ async function renderPage() {
   root.innerHTML = '';
   const url = UrlParser.parseActiveUrlWithCombiner();
   const page = routes[url];
-  await page.render();
+  page.render();
   await page.afterRender();
 }
 

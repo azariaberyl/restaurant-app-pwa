@@ -47,7 +47,10 @@ const Detail = {
 
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const response = await RestaurantAPI.getDetail(url.id);
-    if (response.error === true) return;
+    if (response.error === true) {
+      alert('Data gagal ditampilkan, silahkan muat ulang');
+      return;
+    }
 
     const {pictureId, name, address, city, description, menus, customerReviews, rating} =
       response.restaurant;

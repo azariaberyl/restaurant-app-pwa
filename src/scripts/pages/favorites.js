@@ -21,7 +21,10 @@ const Favorites = {
     const jumbotron = document.querySelector('.jumbotron');
     jumbotron.classList.add('none');
     const data = await FavoriteRestaurantIdb.getAllRestaurants();
-    if (data.error === true) return;
+    if (data.error === true) {
+      alert('Data gagal ditampilkan, silahkan muat ulang');
+      return;
+    }
 
     const favoritePage = document.createElement('div');
     favoritePage.classList.add('favorite-page');
