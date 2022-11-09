@@ -65,7 +65,21 @@ div.header > .favorite {
   font-size: 18px;
   font-weight: 500;
 }
+
+div.header > .favorited {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  padding: 0px 15px;
+  min-height: 44px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 div.header > .favorite:hover {
+  cursor: pointer;
+}
+
+div.header > .favorited:hover {
   cursor: pointer;
 }
 

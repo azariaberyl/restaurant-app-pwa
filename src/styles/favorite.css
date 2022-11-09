@@ -1,0 +1,46 @@
+.favorite-page {
+  display: flex;
+  gap: 20px 2%;
+  justify-content: space-evenly;
+  flex-flow: wrap;
+  width: 100%;
+}
+
+.favorite-page .favorite-item {
+  padding: 10px;
+  background-color: var(--secondary-dark);
+  display: flex;
+  flex-flow: column;
+  width: 23%;
+  min-width: 208px;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.favorite-item > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.favorite-item .judul {
+  font-size: 18px;
+}
+
+.favorite-page img {
+  display: block;
+  border-radius: 5px;
+}
+
+.favorite-page .detail-button {
+  background-color: var(--primary-dark);
+  border-radius: 5px;
+  width: 100%;
+  padding: 10px;
+}
+
+@media screen and (max-width: 375px) {
+  .favorite-page .favorite-item {
+    width: 100%;
+  }
+}

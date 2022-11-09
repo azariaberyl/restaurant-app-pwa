@@ -3,6 +3,7 @@ import '../styles/main.css';
 import routes from './routes/routes';
 import UrlParser from './routes/url-parser';
 import DrawerInitiator from './utils/DrawerInitiator';
+import swRegister from './utils/sw-register';
 
 async function renderPage() {
   const root = document.querySelector('main');
@@ -17,7 +18,8 @@ window.addEventListener('hashchange', () => {
   renderPage();
 });
 
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
   DrawerInitiator.init();
   renderPage();
+  await swRegister();
 });
