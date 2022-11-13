@@ -1,6 +1,6 @@
-import Detail from '../pages/detail';
-import Homepage from '../pages/homepage';
-import Favorites from '../pages/favorites';
+import Detail from '../views/pages/detail';
+import Favorites from '../views/pages/favorites';
+import Homepage from '../views/pages/homepage';
 
 const routes = {
   '/': Homepage, // default page

@@ -1,12 +1,27 @@
-import RestaurantAPI from '../data/restaurant-data';
-import CONFIG from '../global/config';
+import CONFIG from '../../global/config';
 
-const Homepage = {
-  _createRestaurant(name, description, id, city, pictureId, rating) {
+const RestaurantTemplates = {
+  createRestaurantCard(name, pictureId, rating, id) {
+    return `
+      <div class="restaurant-card">
+        <div class="img-container">
+          <img alt="Image of ${name}" src="${CONFIG.API_IMAGE_ENDPOINT(pictureId)}" />
+        </div class="img-container">
+        <div>
+          <p class="bold judul">${name}</p>
+          <p class="rating">Rating: ${rating}</p>
+        </div>
+        <a href="#/detail/${id}" class="detail-button">Show more..</a>
+      </div>
+    `;
+  },
+
+  createRestaurantItem(name, description, id, city, pictureId, rating) {
     const jumbotron = document.querySelector('.jumbotron');
     jumbotron.classList.remove('none');
     const root = document.querySelector('main');
     const containerItem = document.createElement('div');
+    const imgContainer = document.createElement('div');
     const img = document.createElement('img');
     const title = document.createElement('h3');
     const rContainer = document.createElement('div');
@@ -23,7 +38,9 @@ const Homepage = {
 
     img.src = `${CONFIG.API_IMAGE_ENDPOINT(pictureId)}`;
     img.alt = `Picture of ${name} restaurant`;
+    img.width = 300;
     title.textContent = name;
+    imgContainer.appendChild(img);
 
     grade.innerHTML = `<span class="material-symbols-outlined">grade</span>${rating}`;
     grade.ariaLabel = 'rating';
@@ -39,34 +56,12 @@ const Homepage = {
     data.appendChild(grade);
     rContainer.appendChild(title);
     rContainer.appendChild(data);
-    containerItem.appendChild(img);
+    containerItem.appendChild(imgContainer);
     containerItem.appendChild(rContainer);
     root.appendChild(containerItem);
     rContainer.appendChild(desc);
     rContainer.appendChild(showMore);
   },
-
-  async render() {
-    const data = await RestaurantAPI.getList();
-
-    if (data.error === true) {
-      alert('Data gagal ditampilkan, silahkan muat ulang');
-      return;
-    }
-
-    data.restaurants.map((restaurant) => {
-      this._createRestaurant(
-          restaurant.name,
-          restaurant.description,
-          restaurant.id,
-          restaurant.city,
-          restaurant.pictureId,
-          restaurant.rating,
-      );
-    });
-  },
-
-  async afterRender() {},
 };
 
-export default Homepage;
+export default RestaurantTemplates;

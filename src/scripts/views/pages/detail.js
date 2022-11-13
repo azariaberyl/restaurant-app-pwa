@@ -1,15 +1,17 @@
-import RestaurantAPI from '../data/restaurant-data';
-import CONFIG from '../global/config';
-import UrlParser from '../routes/url-parser';
-import '../../styles/detail.css';
-import FavoriteButtonInitiator from '../utils/favoriteButtonInitiator';
+import CONFIG from '../../global/config';
+import RestaurantAPI from '../../data/restaurant-data';
+import UrlParser from '../../routes/url-parser';
+import '../../../styles/detail.css';
+import FavoriteButtonInitiator from '../../utils/favoriteButtonInitiator';
 
 const Detail = {
   _createDetailPage(imgId, name, address, city, description) {
     const root = document.querySelector('main');
     root.innerHTML = `
       <div class="detail-page">
-        <img src="${CONFIG.API_IMAGE_ENDPOINT(imgId)}" alt="Image of ${name}"/>
+        <div class="img-container">
+          <img src="${CONFIG.API_IMAGE_ENDPOINT(imgId)}" alt="Image of ${name}"/>
+        </div>
         <div class="header">
           <h2>${name}</h2>
           <button id="favorite-button" type="button" class="show-more favorite">Favorite</button>
@@ -44,7 +46,13 @@ const Detail = {
   async render() {
     const jumbroton = document.querySelector('.jumbotron');
     jumbroton.classList.add('none');
+    const root = document.querySelector('main');
+    root.innerHTML = `
+      <div class="detail-page detail-height skeleton loading">Loading Data</div>
+    `;
+  },
 
+  async afterRender() {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const response = await RestaurantAPI.getDetail(url.id);
     if (response.error === true) {
@@ -52,8 +60,7 @@ const Detail = {
       return;
     }
 
-    const {pictureId, name, address, city, description, menus, customerReviews, rating} =
-      response.restaurant;
+    const {pictureId, name, address, city, description, menus, customerReviews, rating} = response.restaurant;
 
     this._createDetailPage(pictureId, name, address, city, description, customerReviews);
 
@@ -105,8 +112,6 @@ const Detail = {
       rating,
     });
   },
-
-  afterRender() {},
 };
 
 export default Detail;

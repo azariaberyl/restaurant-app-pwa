@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.favorite-page .favorite-item {
+.favorite-page .restaurant-card {
   padding: 10px;
   background-color: var(--secondary-dark);
   display: flex;
@@ -17,13 +17,21 @@
   border-radius: 10px;
 }
 
-.favorite-item > div {
+.restaurant-card > .img-container {
+  height: 136px;
+}
+
+.restaurant-card img {
+  width: 100%;
+}
+
+.restaurant-card > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.favorite-item .judul {
+.restaurant-card .judul {
   font-size: 18px;
 }
 
@@ -35,12 +43,14 @@
 .favorite-page .detail-button {
   background-color: var(--primary-dark);
   border-radius: 5px;
+  font-weight: bold;
+
   width: 100%;
-  padding: 10px;
+  padding: 15px 10px;
 }
 
 @media screen and (max-width: 375px) {
-  .favorite-page .favorite-item {
+  .favorite-page .restaurant-card {
     width: 100%;
   }
 }
