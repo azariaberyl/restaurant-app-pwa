@@ -336,6 +336,12 @@ footer p {
 }
 
 @media screen and (max-width: 700px) {
+  .jumbotron {
+    background: url('../public/images/heros/hero-image_1-small.jpg') no-repeat;
+    background-size: cover;
+    background-position: center top;
+  }
+
   .menu-container {
     padding: 10px 0px;
   }

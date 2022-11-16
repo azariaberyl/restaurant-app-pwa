@@ -38,6 +38,7 @@ const RestaurantTemplates = {
 
     img.src = `${CONFIG.API_IMAGE_ENDPOINT(pictureId)}`;
     img.alt = `Picture of ${name} restaurant`;
+    img.loading = 'lazy';
     img.width = 300;
     title.textContent = name;
     imgContainer.appendChild(img);
