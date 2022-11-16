@@ -3,7 +3,17 @@ import RestaurantTemplates from '../templates/create-restaurant-template';
 
 const Homepage = {
   async render() {
-    document.querySelector('main').innerHTML = `
+    const jumbotron = document.createElement('div');
+    jumbotron.classList.add('jumbotron');
+    const main = document.querySelector('main');
+    document.body.insertBefore(jumbotron, main);
+    jumbotron.innerHTML = `
+      <div>
+        <h2>Where every flavor tells a story.</h2>
+        <p>The best restaurants from all over the country to fulfill your journey</p>
+      </div>
+    `;
+    main.innerHTML = `
       <div class="skeleton homepage-height loading"> Loading Data . . </div>
     `;
   },

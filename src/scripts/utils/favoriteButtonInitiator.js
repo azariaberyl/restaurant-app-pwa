@@ -1,9 +1,9 @@
 import FavoriteRestaurantIdb from '../data/favorite-restaurants-idb';
 
 const FavoriteButtonInitiator = {
-  async init(id, restaurant) {
-    this._favoriteButtonContainer = document.querySelector('.detail-page #favorite-button');
-    this._id = id;
+  async init(favoriteButtonContainer, restaurant) {
+    this._favoriteButtonContainer = favoriteButtonContainer;
+    this._id = restaurant.id;
     this._restaurant = restaurant;
 
     await this._renderButton();
@@ -11,30 +11,36 @@ const FavoriteButtonInitiator = {
 
   async _renderButton() {
     const id = this._id;
+    this._renderTheButton();
+    const favoriteButton = document.querySelector('#favorite-button');
 
     if (await this._isRestaurantExist(id)) {
-      this._favoriteButtonContainer.classList.remove('favorite');
-      this._favoriteButtonContainer.classList.add('favorited');
-      this._favoriteButtonContainer.innerHTML = 'Favorited';
+      this.renderFavoritedButton(favoriteButton);
     } else {
-      this._favoriteButtonContainer.classList.remove('favorited');
-      this._favoriteButtonContainer.classList.add('favorite');
-      this._favoriteButtonContainer.innerHTML = 'Favorite';
+      this.renderFavoriteButton(favoriteButton);
     }
 
-    this._favoriteButtonContainer.addEventListener('click', async () => {
+    favoriteButton.addEventListener('click', async () => {
       if (await this._isRestaurantExist(id)) {
-        this._favoriteButtonContainer.classList.remove('favorited');
-        this._favoriteButtonContainer.classList.add('favorite');
-        this._favoriteButtonContainer.innerHTML = 'Favorite';
+        this.renderFavoriteButton(favoriteButton);
         await FavoriteRestaurantIdb.deleteRestaurant(this._id);
       } else {
-        this._favoriteButtonContainer.classList.remove('favorite');
-        this._favoriteButtonContainer.classList.add('favorited');
-        this._favoriteButtonContainer.innerHTML = 'Favorited';
+        this.renderFavoritedButton(favoriteButton);
         await FavoriteRestaurantIdb.putRestaurant(this._restaurant);
       }
     });
+  },
+
+  renderFavoritedButton(favoriteButton) {
+    favoriteButton.classList.remove('favorite');
+    favoriteButton.classList.add('favorited');
+    favoriteButton.innerHTML = 'Favorited';
+  },
+
+  renderFavoriteButton(favoriteButton) {
+    favoriteButton.classList.remove('favorited');
+    favoriteButton.classList.add('favorite');
+    favoriteButton.innerHTML = 'Favorite';
   },
 
   async _isRestaurantExist(id) {
@@ -43,9 +49,15 @@ const FavoriteButtonInitiator = {
   },
 
   // TODO, fix folowing functions
-  _renderLike() {},
+  _renderTheButton() {
+    const button = document.createElement('button');
+    button.id = 'favorite-button';
+    button.type = 'button';
+    button.classList.add('show-more', 'favorite');
+    button.innerText = 'Favorite';
 
-  _renderLiked() {},
+    this._favoriteButtonContainer.appendChild(button);
+  },
 };
 
 export default FavoriteButtonInitiator;

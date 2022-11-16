@@ -5,7 +5,7 @@ import RestaurantTemplates from '../templates/create-restaurant-template';
 const Favorites = {
   async render() {
     const jumbotron = document.querySelector('.jumbotron');
-    jumbotron.classList.add('none');
+    jumbotron && jumbotron.remove();
     const root = document.querySelector('main');
     root.innerHTML = `
       <div class="favorite-page skeleton loading">Loading Data</div>

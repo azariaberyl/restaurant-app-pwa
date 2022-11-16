@@ -14,7 +14,6 @@ const Detail = {
         </div>
         <div class="header">
           <h2>${name}</h2>
-          <button id="favorite-button" type="button" class="show-more favorite">Favorite</button>
         </div>
         <div class="detail">
           <p class="bold">Address</p>
@@ -44,8 +43,8 @@ const Detail = {
   },
 
   async render() {
-    const jumbroton = document.querySelector('.jumbotron');
-    jumbroton.classList.add('none');
+    const jumbotron = document.querySelector('.jumbotron');
+    jumbotron && jumbotron.remove();
     const root = document.querySelector('main');
     root.innerHTML = `
       <div class="detail-page detail-height skeleton loading">Loading Data</div>
@@ -105,7 +104,7 @@ const Detail = {
       reviews.appendChild(root);
     });
 
-    await FavoriteButtonInitiator.init(url.id, {
+    await FavoriteButtonInitiator.init(document.querySelector('.detail-page > .header'), {
       id: url.id,
       name,
       pictureId,
