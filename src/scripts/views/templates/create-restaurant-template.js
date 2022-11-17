@@ -36,9 +36,11 @@ const RestaurantTemplates = {
     place.classList.add('city');
     containerItem.classList.add('restaurant-item');
 
-    img.src = `${CONFIG.API_IMAGE_ENDPOINT(pictureId)}`;
+    // img.src = `${CONFIG.API_IMAGE_ENDPOINT(pictureId)}`;
+    img.classList.add('lazyload');
+    img.setAttribute('data-src', CONFIG.API_IMAGE_ENDPOINT(pictureId));
     img.alt = `Picture of ${name} restaurant`;
-    img.loading = 'lazy';
+    // img.loading = 'lazy';
     img.width = 300;
     title.textContent = name;
     imgContainer.appendChild(img);
