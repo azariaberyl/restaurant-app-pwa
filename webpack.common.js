@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const {default: ImageminWebpackPlugin} = require('imagemin-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');
 
 module.exports = {
   entry: {
@@ -54,5 +55,6 @@ module.exports = {
       ],
     }),
     new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin(),
   ],
 };
